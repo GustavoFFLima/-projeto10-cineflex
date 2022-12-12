@@ -18,5 +18,4 @@ export default function App() {
 
 const AppStyled = styled.div`
   width: 375px;
-  height: 877px;
 `

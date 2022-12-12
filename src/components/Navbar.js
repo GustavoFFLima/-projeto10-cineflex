@@ -14,6 +14,7 @@ const NavbarStyled= styled.div`
     left: 0px;
     top: 0px;
     background: #C3CFD9;
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
