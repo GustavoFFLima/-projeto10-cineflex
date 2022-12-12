@@ -1,26 +1,35 @@
 import { useState, useEffect } from 'react';
+import { Link, useParams } from "react-router-dom"
 import axios from 'axios';
 import styled from "styled-components";
 
 export default function Lista() {
-	const [lista, setlista] = useState([]);
-
+	const [lista, setLista] = useState(undefined);
+    
 	useEffect(() => {
-		const requisicao = axios.get("https://mock-api.driven.com.br/api/v8/cineflex/movies");
-		requisicao.then(resposta => {
-			setlista(resposta.data);
-		});
+		axios
+            .get("https://mock-api.driven.com.br/api/v8/cineflex/movies")
+            .then(resposta => setLista(resposta.data))
+            .catch((erro) => console.log(erro));
 	}, []);
 
+    if(lista === undefined) {
+        return <p>Carregando...</p>;
+    }
+
     return (
-        <ArrayListaStyle>
+        <ArrayListaStyle >
             {lista.map(lista => 
-            <MolduraStyle><img src={lista.posterURL} alt={lista.title} /></MolduraStyle>)}
+            <Link to={`/sessoes/:${lista.id}`} key={lista.id}>
+                <MolduraStyle >
+                    <img src={lista.posterURL} alt={lista.title} />
+                </MolduraStyle>
+            </Link>)}
         </ArrayListaStyle>
     )
 }
 
-const MolduraStyle = styled.button`
+const MolduraStyle = styled.div`
     width: 145px;
     height: 209px;
     left: 205px;
@@ -36,7 +45,7 @@ const ArrayListaStyle = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    button {
+    div {
         display: flex;
         margin: 11px;
         align-items: center;
