@@ -5,9 +5,11 @@ import PaginaPrincipal from "./PaginaPrincipal";
 import Sessoes from "./Sessoes";
 import Assentos from "./Assentos";
 import Sucesso from "./Sucesso";
+import React, { useState } from "react";
 
 
 export default function App() {
+
   return (
     <AppStyled>
       <Navbar />

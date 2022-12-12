@@ -19,10 +19,10 @@ export default function Lista() {
 
     return (
         <ArrayListaStyle >
-            {lista.map(lista => 
-            <Link to={`/sessoes/:${lista.id}`} key={lista.id} >
+            {lista.map(filme => 
+            <Link to={`/sessoes/${filme.id}`} key={filme.id} >
                 <MolduraStyle  data-test="movie">
-                    <img src={lista.posterURL} alt={lista.title} />
+                    <img src={filme.posterURL} alt={filme.title} />
                 </MolduraStyle>
             </Link>)}
         </ArrayListaStyle>
