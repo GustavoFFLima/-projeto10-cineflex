@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styled from "styled-components";
-import PaginaPrincipal from "./components/PaginaPrincipal";
+import PaginaPrincipal from "./PaginaPrincipal";
 import Navbar from "./Navbar";
 
 export default function App() {
