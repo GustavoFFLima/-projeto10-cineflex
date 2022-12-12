@@ -1,11 +1,22 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styled from "styled-components";
+import PaginaPrincipal from "./PaginaPrincipal";
+import Navbar from "./Navbar";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-    </div>
+    <AppStyled>
+      <Navbar />
+      <BrowserRouter>
+        <Routes>
+         <Route path="/" element={<PaginaPrincipal />} />
+        </Routes>
+      </BrowserRouter>
+    </AppStyled>
   );
 }
 
-export default App;
+const AppStyled = styled.div`
+  width: 375px;
+  height: 877px;
+`
