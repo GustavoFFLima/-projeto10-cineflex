@@ -26,7 +26,7 @@ export default function Sessoes() {
                         <p>{response.weekday} - {response.date}</p>
                         <div>
                             {response.showtimes.map((response) => (
-                                <Link data-test="showtime" to={`/assentos/${response.id}`}>
+                                <Link to={`/assentos/${response.id}`}>
                                     <button data-test="showtime">{response.name}</button>
                                 </Link>
                             ))}
