@@ -10,6 +10,8 @@ import React, { useState } from "react";
 
 export default function App() {
 
+  const [arrayDados, setArrayDados] = useState([])
+
   return (
     <AppStyled>
       <Navbar />
@@ -18,7 +20,7 @@ export default function App() {
          <Route path="/" element={<PaginaPrincipal />}></Route>
          <Route path="/sessoes/:idFilme" element={<Sessoes />}></Route>
          <Route path="/assentos/:idSessao" element={<Assentos />}></Route>
-         <Route path="/sucesso/:idSucesso" element={<Sucesso />}></Route>
+         <Route path="/sucesso" element={<Sucesso />}></Route>
         </Routes>
       </BrowserRouter>
     </AppStyled>

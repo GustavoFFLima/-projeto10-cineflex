@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
-import Dados from './dado'
 import styled from "styled-components"
 
 export default function Assentos() {
     const [assentosFilme, setAssentosFilme] = useState(null)
+    const [poltronas, setPoltronas] = useState([]);
+    const [nome, setNome] = useState("");
+    const [cpf, setCpf] = useState("");
+    const navigate = useNavigate()
     let { idSessao } = useParams();
 
     useEffect(() => {
@@ -21,10 +25,41 @@ export default function Assentos() {
 
     function Seats(props) {
         return (
-            <AssentosSessao key={props.id} cor={props.isAvailable ? "#FBE192" : "#C3CFD9"}>
+            <AssentosSessao key={props.id} cor={props.isAvailable ? (poltronas.includes(props.id) ? "#1AAE9E" : "#C3CFD9") : "#FBE192"} onClick={() => ocuparAssento(props.isAvailable, props.id)}>
                 {props.name}   
             </AssentosSessao>
         )
+    }
+
+    function ocuparAssento(ocupado, idPoltrona){
+        let array = [...poltronas]
+
+        if(ocupado === false){
+            return alert("Esse assento não está disponível")
+        } 
+        if(!poltronas.includes(idPoltrona)) {
+            array.push(idPoltrona)
+            setPoltronas(array)
+        } else {
+            let index = array.indexOf(idPoltrona);
+            if (index > -1) {
+                array.splice(index, 1);
+              }
+            setPoltronas(array)
+        }
+    }
+
+
+    function dadoosClientes(event) {
+        event.preventDefault();
+        axios
+            .post(`https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many`, {
+                ids: poltronas,
+                name: nome,
+                cpf: cpf
+            } )
+            .then( navigate("/sucesso"))
+            .catch((erro) => console.log(erro))
     }
 
     return (
@@ -47,7 +82,13 @@ export default function Assentos() {
                     <p>Indisponivel</p>
                 </div>
             </PainelStyled>
-            <Dados />
+            <FormsStyled onSubmit={dadoosClientes}>
+                <label htmlFor="nome">Nome do comprador:</label>
+                <input type="text" value={nome} onChange={e => setNome(e.target.value)} name="Nome do comprado" id="nome"  placeholder="Digite seu nome..." required />
+                <label htmlFor="cpf">CPF do comprador:</label>
+                <input type="number" value={cpf} onChange={e => setCpf(e.target.value)} name="CPF do comprador" id="cpf" placeholder="Digite seu CPF..." required />
+                <button type="submit">Reservar assento(s)</button>
+            </FormsStyled>
             <FooterStyled data-test="footer" >
                 <Quadro>
                     <img src={assentosFilme.movie.posterURL} alt='' />
@@ -165,4 +206,12 @@ const TextoStyled= styled.div`
         font-size: 16px;
         line-height: 30px;
     }  
+`
+
+const FormsStyled = styled.form`
+    width: 225px;
+    height: 42px;
+    margin: 150px;
+    background: #E8833A;
+    border-radius: 3px;
 `
