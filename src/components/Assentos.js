@@ -82,9 +82,9 @@ export default function Assentos( { setArrayDados } ) {
     return (
         <AssentosStyled>
             <h1>Selecione o(s) assento(s)</h1>
-            <div>
+            {/* <div>
                 {assentosFilme.seats.map((filme) => <Seats id={filme.id} name={filme.name} isAvailable={filme.isAvailable} />)}
-            </div>
+            </div> */}
             <PainelStyled>
                 <div>
                     <ButtonCor background={"#1AAE9E"} border={"#0E7D71"}></ButtonCor>

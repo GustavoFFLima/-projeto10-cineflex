@@ -22,11 +22,11 @@ export default function Sessoes() {
         <SessoesStyled>
             <h1>Selecione o horário</h1>
             {sessaoFilme.days.map((response) => (
-                <HorarioSessao  key={response.id}>
+                <HorarioSessao data-test="movie-day" key={response.id}>
                         <p>{response.weekday} - {response.date}</p>
                         <div>
                             {response.showtimes.map((response) => (
-                                <Link data-test="movie-day" to={`/assentos/${response.id}`}>
+                                <Link to={`/assentos/${response.id}`}>
                                     <button data-test="showtime">{response.name}</button>
                                 </Link>
                             ))}
