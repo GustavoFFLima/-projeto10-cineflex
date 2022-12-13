@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import styled from "styled-components"
 
-export default function Assentos() {
+export default function Assentos( { setArrayDados } ) {
     const [assentosFilme, setAssentosFilme] = useState(null)
     const [poltronas, setPoltronas] = useState([]);
     const [nome, setNome] = useState("");
     const [cpf, setCpf] = useState("");
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     let { idSessao } = useParams();
+    let objTemp ={}
 
     useEffect(() => {
         axios
@@ -25,7 +26,7 @@ export default function Assentos() {
 
     function Seats(props) {
         return (
-            <AssentosSessao key={props.id} cor={props.isAvailable ? (poltronas.includes(props.id) ? "#1AAE9E" : "#C3CFD9") : "#FBE192"} onClick={() => ocuparAssento(props.isAvailable, props.id)}>
+            <AssentosSessao  data-test="seat" key={props.id} cor={props.isAvailable ? (poltronas.includes(props.name) ? "#1AAE9E" : "#C3CFD9") : "#FBE192"} onClick={() => ocuparAssento(props.isAvailable, props.name)}>
                 {props.name}   
             </AssentosSessao>
         )
@@ -49,8 +50,22 @@ export default function Assentos() {
         }
     }
 
+    function dadoscliente() {
+        
+        objTemp = {
+            filme:assentosFilme.name,
+            sessao:assentosFilme.day.date,
+            horaSessao:assentosFilme.name,
+            ingressos:poltronas,
+            nome: nome,
+            cpf:cpf 
+        }
+        setArrayDados(objTemp);
+    }
+
 
     function dadoosClientes(event) {
+        dadoscliente()
         event.preventDefault();
         axios
             .post(`https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many`, {
@@ -61,6 +76,8 @@ export default function Assentos() {
             .then( navigate("/sucesso"))
             .catch((erro) => console.log(erro))
     }
+
+
 
     return (
         <AssentosStyled>
@@ -84,10 +101,10 @@ export default function Assentos() {
             </PainelStyled>
             <FormsStyled onSubmit={dadoosClientes}>
                 <label htmlFor="nome">Nome do comprador:</label>
-                <input type="text" value={nome} onChange={e => setNome(e.target.value)} name="Nome do comprado" id="nome"  placeholder="Digite seu nome..." required />
+                <input type="text" data-test="client-name" value={nome} onChange={e => setNome(e.target.value)} name="Nome do comprado" id="nome"  placeholder="Digite seu nome..." required />
                 <label htmlFor="cpf">CPF do comprador:</label>
-                <input type="number" value={cpf} onChange={e => setCpf(e.target.value)} name="CPF do comprador" id="cpf" placeholder="Digite seu CPF..." required />
-                <button type="submit">Reservar assento(s)</button>
+                <input type="number"  data-test="client-cpf" value={cpf} onChange={e => setCpf(e.target.value)} name="CPF do comprador" id="cpf" placeholder="Digite seu CPF..." required />
+                <button type="submit" data-test="book-seat-btn">Reservar assento(s)</button>
             </FormsStyled>
             <FooterStyled data-test="footer" >
                 <Quadro>
@@ -166,7 +183,6 @@ const ButtonCor = styled.button`
     border: 1px solid ${props => props.border};
 `
 
-
 const FooterStyled = styled.div`
     width: 100%;
     height: 117px;
@@ -209,9 +225,42 @@ const TextoStyled= styled.div`
 `
 
 const FormsStyled = styled.form`
-    width: 225px;
-    height: 42px;
-    margin: 150px;
-    background: #E8833A;
-    border-radius: 3px;
+    label {
+        width: 327px;
+        height: 25px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 21px;
+        display: flex;
+        align-items: center;
+
+        color: #293845;
+    }
+    input {
+        width: 327px;
+        height: 51px;
+
+        background: #FFFFFF;
+        border: 1px solid #D5D5D5;
+        border-radius: 3px;
+    }
+    button {
+        width: 225px;
+        height: 42px;
+        border: none;
+        background: #E8833A;
+        border-radius: 3px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 21px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 0.04em;
+        color: #FFFFFF;
+    }
 `

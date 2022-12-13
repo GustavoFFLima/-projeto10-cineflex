@@ -1,5 +1,39 @@
-export default function Sucesso() {
-    
+import styled from "styled-components"
+import { useNavigate } from 'react-router-dom'
 
-    return  <p>Sucesso</p>
+export default function Sucesso( {arrayDados, setArrayDados } ) {
+    const navigate = useNavigate();
+
+    function home(){
+        setArrayDados({})
+        navigate("/")
+    }
+    
+    return  (
+        console.log(arrayDados)
+        // <SucessoStyled>
+        //     <div>
+        //         <h1>Pedido feito</h1>
+        //         <h1>com sucesso!</h1> 
+        //     </div>
+        //     <div>
+        //         <h2>Filme e sessão</h2>
+        //         <p>{arrayDados.filme}</p>
+        //         <p>{arrayDados.sessao} {arrayDados.horaSessao}</p>
+        //     </div>
+        //     <div>
+        //         <h2>Ingressos</h2>
+        //         {arrayDados.map((tiket) => <p>Assento {tiket.ingressos}</p> )}
+        //     </div>
+        //     <div>
+        //         <h2>Comprador</h2>
+        //         <p>Nome: {arrayDados.nome}</p>
+        //         <p>CPF: {arrayDados.cpf}</p>
+        //     </div>
+        //     <button onClick={home}>Voltar pra Home</button>
+        // </SucessoStyled>      
+    )
 }
+
+const SucessoStyled = styled.div`
+`
