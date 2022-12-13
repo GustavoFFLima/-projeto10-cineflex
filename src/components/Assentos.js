@@ -152,7 +152,7 @@ const PainelStyled = styled.div`
     div {
         display: flex;
         flex-direction: column;
-        margin: 0px 12px;
+        margin: 16px 12px;
         p {
             font-family: 'Roboto';
             font-style: normal;
@@ -223,6 +223,7 @@ const FormsStyled = styled.form`
     label {
         width: 327px;
         height: 25px;
+        margin-left: 24px;
         font-family: 'Roboto';
         font-style: normal;
         font-weight: 400;
@@ -230,20 +231,30 @@ const FormsStyled = styled.form`
         line-height: 21px;
         display: flex;
         align-items: center;
-
         color: #293845;
     }
     input {
         width: 327px;
         height: 51px;
-
+        margin-left: 24px;
         background: #FFFFFF;
         border: 1px solid #D5D5D5;
         border-radius: 3px;
+        ::placeholder{
+            font-family: 'Roboto';
+            font-style: italic;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 21px;
+            display: flex;
+            align-items: center;
+            color: #AFAFAF
+        }
     }
     button {
         width: 225px;
         height: 42px;
+        margin: 57px 78px 30px 78px ;
         border: none;
         background: #E8833A;
         border-radius: 3px;

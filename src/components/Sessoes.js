@@ -67,6 +67,11 @@ const SessoesStyled = styled.div`
     }
 `
 const HorarioSessao = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    justify-content: start;  
     p{
         font-family: 'Roboto';
         font-style: normal;
