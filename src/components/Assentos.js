@@ -24,14 +24,6 @@ export default function Assentos( { setArrayDados } ) {
         return <p> Carregando...</p>
     }
 
-    function Seats(props) {
-        return (
-            <AssentosSessao  data-test="seat" key={props.id} cor={props.isAvailable ? (poltronas.includes(props.name) ? "#1AAE9E" : "#C3CFD9") : "#FBE192"} onClick={() => ocuparAssento(props.isAvailable, props.name)}>
-                {props.name}   
-            </AssentosSessao>
-        )
-    }
-
     function ocuparAssento(ocupado, idPoltrona){
         let array = [...poltronas]
 
@@ -82,9 +74,12 @@ export default function Assentos( { setArrayDados } ) {
     return (
         <AssentosStyled>
             <h1>Selecione o(s) assento(s)</h1>
-            {/* <div>
-                {assentosFilme.seats.map((filme) => <Seats id={filme.id} name={filme.name} isAvailable={filme.isAvailable} />)}
-            </div> */}
+            <div>
+                {assentosFilme.seats.map((filme) => <AssentosSessao  data-test="seat" key={filme.id} cor={filme.isAvailable ? (poltronas.includes(filme.name) ? "#1AAE9E" : "#C3CFD9") : "#FBE192"} onClick={() => ocuparAssento(filme.isAvailable, filme.name)}>
+                {filme.name}   
+            </AssentosSessao>
+                )}
+            </div>
             <PainelStyled>
                 <div>
                     <ButtonCor background={"#1AAE9E"} border={"#0E7D71"}></ButtonCor>
