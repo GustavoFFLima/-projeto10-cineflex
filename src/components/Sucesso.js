@@ -36,5 +36,72 @@ export default function Sucesso( {arrayDados, setArrayDados } ) {
 }
 
 const SucessoStyled = styled.div`
-    margin-top: 67px;
+    width: 374px;
+    height: 110px;
+    margin-top: 87px;
+    div{
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: flex-start;
+    }
+    h1{
+        margin-left: 120px;
+        margin-bottom: 1px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 28px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 0.04em;
+        color: #247A6B;
+    }
+    h2 {
+        margin: 35px 0px 15px 29px ;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 28px;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.04em;
+        color: #293845;
+    }
+    p{
+        margin-left: 29px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 26px;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.04em;
+        color: #293845;
+    }
+    button{
+        width: 225px;
+        height: 42px;
+        left: 74px;
+        top: 622px;
+        background: #E8833A;
+        border-radius: 3px;
+        border: none;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 21px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 0.04em;
+        color: #FFFFFF;
+        margin: 100px 75px;
+        justify-content: center;
+    }
 `

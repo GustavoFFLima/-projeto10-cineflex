@@ -45,7 +45,7 @@ export default function Assentos( { setArrayDados } ) {
     function dadoscliente() {
         
         objTemp = {
-            filme:assentosFilme.name,
+            filme:assentosFilme.movie.title,
             sessao:assentosFilme.day.date,
             horaSessao:assentosFilme.name,
             ingressos:poltronas,
